@@ -19,8 +19,8 @@ public class frameBuilder {
         frame.setSize(x, y);
         frame.setTitle(title);
         frame.setLayout(null);
-        //frame.setResizable(rezisable);
-        //frame.setVisible(true);
+        frame.setResizable(rezisable);
+        frame.setLocationRelativeTo(null);
         return frame;
     }
 

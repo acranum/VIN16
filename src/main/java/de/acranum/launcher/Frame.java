@@ -94,7 +94,7 @@ public class Frame extends JFrame implements ActionListener {
                     } else {
                         String Round = "";
                         Round = decrypt.decrypt(Data.getText(), finalKey);
-                        for (int ii = 0; ii < i; ii++) { //FIXME: add int support for decryption
+                        for (int ii = 0; ii < i; ii++) {
                             Round.replace("\\s", "");
                             Round = decrypt.decrypt(Round, finalKey);
                         }
