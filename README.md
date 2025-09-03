@@ -27,30 +27,31 @@ The `vin16` encryption algorithm is a lightweight and fast cryptographic algorit
 ## Installation
 
 To use `vin16`, you can either clone the repository or download the source files. <br>
-Downlaod source files: 
+[Download source files](https://github.com/acranum/VIN16/releases/download/1.0.0/vin-16_1.0.0.jar)
 
 ```bash
-cd vin16
-java <vin>
+java -jar vin-16_<version>.jar
 ```
-or doubleclick .jar <br>
-Clone source files: 
+or double-click the .jar file <br>
+Clone repository: 
 ```bash
 git clone [https://github.com/yourusername/vin16.git](https://github.com/acranum/VIN16.git)
 cd vin16
-java <vin>
+mvn package
+cd target
+java -jar vin-16_<version>.jar
 ```
 ## Usage
-Add .jar as libary
+Add .jar as libary <br>
 ```bash
 import de.acranum.vin;
 
-vin vin = new vin; // create new obj
+Vin16 vin = new Vin16; // create new obj
 
-vin.encrypt(String data, String key);
-vin.encrypt(byte[] data, byte[] key);
-vin.decrypt(String data, String key);
-vin.decrypt(byte[] data, byte[] key);
+vin.encrypt(String data, char[] key);
+vin.encrypt(byte[] data, char[] key);
+vin.decrypt(String data, char[] key);
+vin.decrypt(byte[] data, char[] key);
 ```
 
 ## Algorithm Overview
@@ -58,4 +59,4 @@ The vin16 algorithm uses a combination of XOR, SubBytes, ShiftRows and more to p
 The key is set to a 16 character length using the md5 hashing algorithm. The optimal key length is still 16 characters
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/acranum/VIN16/blob/main/LICENSE) file for details.
+This project is licensed under the GNU License. See the [LICENSE](https://github.com/acranum/VIN16/blob/main/LICENSE) file for details.
