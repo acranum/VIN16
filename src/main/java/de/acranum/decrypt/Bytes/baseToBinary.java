@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Base64;
 
 public class baseToBinary {
-    public ArrayList btb(String in) {
+    public ArrayList<String> btb(String in) {
         ArrayList<String> data = new ArrayList<>();
-        //String data = new String();
+        String clean_in = in.replaceAll("\\s+", "");
 
-        byte[] base64DecodedBytes = Base64.getDecoder().decode(in);
-        String decodedString = new String(base64DecodedBytes);
+        //byte[] base64DecodedBytes = Base64.getDecoder().decode(clean_in);
+        //String decodedString = new String(base64DecodedBytes);
 
-        byte[] binaryData = Base64.getDecoder().decode(in);
+        byte[] binaryData = Base64.getDecoder().decode(clean_in);
 
         // Ausgabe des Binär-Arrays
         for (byte b : binaryData) {
