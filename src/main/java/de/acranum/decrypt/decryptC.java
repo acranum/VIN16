@@ -55,7 +55,8 @@ public class decryptC {
         String Output = getBytes.getString(end_bin);
         System.out.println(Output);
 
-        return Output;
+
+        return Output.trim();
     }
 
     public ArrayList<String> Runde1(ArrayList txt, ArrayList keyXor) {

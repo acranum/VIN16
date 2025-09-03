@@ -1,6 +1,5 @@
 package de.acranum.encrypt;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class XOR {
@@ -20,7 +19,7 @@ public class XOR {
                     int xorVal = Character.getNumericValue(bin) ^ Character.getNumericValue(keybin);
                     xorResult.append(xorVal);
                 }
-                encryptedPacket.append(xorResult.toString()).append(" ");
+                encryptedPacket.append(xorResult).append(" ");
                 keyIndex = (keyIndex + 1) % key.size();
             }
             encryptedPackets.add(encryptedPacket.toString().trim());

@@ -1,6 +1,7 @@
 package de.acranum.Util;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -14,18 +15,17 @@ public class frameBuilder {
         }
     }
 
-    public JFrame frame(int x, int y, String title, boolean rezisable) {
+    public static JFrame frame(int x, int y, String title, boolean resizable) {
         JFrame frame = new JFrame();
         frame.setSize(x, y);
         frame.setTitle(title);
         frame.setLayout(null);
-        //frame.setResizable(rezisable);
-        //frame.setVisible(true);
+        frame.setResizable(resizable);
         return frame;
     }
 
 
-    public JButton button(int x, int y, int width, int height, JFrame frame, String txt, ActionListener ac) {
+    public static JButton button(int x, int y, int width, int height, JFrame frame, String txt, ActionListener ac) {
         JButton button = new JButton(txt);
         button.setBounds(x, y, width, height);
         button.addActionListener(ac);
@@ -33,15 +33,17 @@ public class frameBuilder {
         return button;
     }
 
-    public JLabel label(int x, int y, int width, int height, JFrame frame, String txt, boolean visibility) {
+    public static JLabel label(int x, int y, int width, int height, JFrame frame, String txt, Font font, Color color, boolean visibility) {
         JLabel label = new JLabel(txt);
+        if (font != null) label.setFont(font);
+        if (color != null) label.setForeground(color);
         label.setBounds(x, y, width, height);
         frame.add(label);
         label.setVisible(visibility);
         return label;
     }
 
-    public JTextField textField(int x, int y, int width, int height, JFrame frame, String txt, boolean visibility) {
+    public static JTextField textField(int x, int y, int width, int height, JFrame frame, String txt, boolean visibility) {
         JTextField textField = new JTextField(txt);
         textField.setBounds(x, y, width, height);
         textField.setVisible(visibility);
@@ -49,8 +51,18 @@ public class frameBuilder {
 
         return textField;
     }
+    public static JSpinner numberField(int x, int y, int width, int height, JFrame frame, int startValue, int min, int max, ChangeListener ch, boolean visibility) {
+        SpinnerNumberModel model = new SpinnerNumberModel(startValue, min, max, 1);
+        JSpinner numberField = new JSpinner(model);
+        numberField.addChangeListener(ch);
+        numberField.setBounds(x, y, width, height);
+        numberField.setVisible(visibility);
+        frame.add(numberField);
 
-    public JPasswordField passwordField(int x, int y, int width, int height, JFrame frame, String txt, boolean visibility) {
+        return numberField;
+    }
+
+    public static JPasswordField passwordField(int x, int y, int width, int height, JFrame frame, String txt, boolean visibility) {
         JPasswordField textField = new JPasswordField(txt);
         textField.setBounds(x, y, width, height);
         textField.setVisible(visibility);
@@ -59,7 +71,7 @@ public class frameBuilder {
         return textField;
     }
 
-    public JCheckBox checkbox(int x, int y, int width, int height, JFrame frame, String txt, ActionListener ac) {
+    public static JCheckBox checkbox(int x, int y, int width, int height, JFrame frame, String txt, ActionListener ac) {
         JCheckBox checkBox = new JCheckBox(txt);
         checkBox.setBounds(x, y, width, height);
         checkBox.addActionListener(ac);
@@ -69,7 +81,7 @@ public class frameBuilder {
         return checkBox;
     }
 
-    public JTextArea textArea(int x, int y, int width, int height, JFrame frame, String txt, Font font) {
+    public static JTextArea textArea(int x, int y, int width, int height, JFrame frame, String txt, Font font) {
         JTextArea text = new JTextArea(txt);
         text.setLineWrap(true);
         text.setWrapStyleWord(true);
@@ -79,7 +91,7 @@ public class frameBuilder {
         return text;
     }
 
-    public JTextArea textAreaScroll(int x, int y, int width, int height, JFrame frame, String txt, Font font) {
+    public static JTextArea textAreaScroll(int x, int y, int width, int height, JFrame frame, String txt, Font font) {
         JTextArea text = new JTextArea(txt);
         text.setLineWrap(true);
         text.setWrapStyleWord(true);
@@ -98,7 +110,7 @@ public class frameBuilder {
         return text;
     }
 
-    public JComboBox ComboBox(int x, int y, int width, int height, JFrame frame, String[] objects, ActionListener ac, Font font) {
+    public static JComboBox comboBox(int x, int y, int width, int height, JFrame frame, String[] objects, ActionListener ac, Font font) {
         JComboBox box = new JComboBox(objects);
         box.addActionListener(ac);
         box.setFont(font);
