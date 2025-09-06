@@ -4,10 +4,12 @@ import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
+import java.beans.PropertyChangeListener;
 
 public class frameBuilder {
 
-    public frameBuilder() {
+    static {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception var3) {
@@ -43,7 +45,7 @@ public class frameBuilder {
         return label;
     }
 
-    public static JTextField textField(int x, int y, int width, int height, JFrame frame, String txt, boolean visibility) {
+    public static JTextField textField(int x, int y, int width, int height, JFrame frame, String txt, KeyListener kl, boolean visibility) {
         JTextField textField = new JTextField(txt);
         textField.setBounds(x, y, width, height);
         textField.setVisible(visibility);
@@ -54,18 +56,19 @@ public class frameBuilder {
     public static JSpinner numberField(int x, int y, int width, int height, JFrame frame, int startValue, int min, int max, ChangeListener ch, boolean visibility) {
         SpinnerNumberModel model = new SpinnerNumberModel(startValue, min, max, 1);
         JSpinner numberField = new JSpinner(model);
-        numberField.addChangeListener(ch);
         numberField.setBounds(x, y, width, height);
         numberField.setVisible(visibility);
+        numberField.addChangeListener(ch);
         frame.add(numberField);
 
         return numberField;
     }
 
-    public static JPasswordField passwordField(int x, int y, int width, int height, JFrame frame, String txt, boolean visibility) {
+    public static JPasswordField passwordField(int x, int y, int width, int height, JFrame frame, String txt, KeyListener kl, boolean visibility) {
         JPasswordField textField = new JPasswordField(txt);
         textField.setBounds(x, y, width, height);
         textField.setVisible(visibility);
+        textField.addKeyListener(kl);
         frame.add(textField);
         textField.setVisible(true);
         return textField;
@@ -91,10 +94,11 @@ public class frameBuilder {
         return text;
     }
 
-    public static JTextArea textAreaScroll(int x, int y, int width, int height, JFrame frame, String txt, Font font) {
+    public static JTextArea textAreaScroll(int x, int y, int width, int height, JFrame frame, String txt, Font font, KeyListener kl) {
         JTextArea text = new JTextArea(txt);
         text.setLineWrap(true);
         text.setWrapStyleWord(true);
+        text.addKeyListener(kl);
         //text.setBounds(x, y, width, height);
         text.setFont(font);
         text.setEditable(true);
